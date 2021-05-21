@@ -56,9 +56,7 @@ app.post('/items' , async(req,res)=>{
      .catch(next)
 
 }); 
-if (process.env.NODE_ENV === "production"){
-    app.use(express.static('./clientt/build'));
-}  
+
     
 
 
