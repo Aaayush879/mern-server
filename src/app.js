@@ -3,8 +3,18 @@ const mongoose= require('mongoose');
 const bodyparser = require('body-parser')
 const bcrypt = require('bcrypt');
 const app = express();
+const multer = require('multer');
 require('dotenv').config();
 
+const storage = multer.diskStorage({
+    destination:(req , file , callback) => {
+        callback(null ,"./clientt/public/upload");
+    },
+    filename: (req,file,callback) =>{
+        callback(null , file.originalname);
+    }
+})
+const upload = multer({storage: storage});
 const port = process.env.PORT||2000;
 const Login = require('./model/Login');
 const cors = require('cors');
@@ -30,13 +40,15 @@ app.use(cors());
 //});
 
 
-app.post('/items',async (req,res)=>{
+app.post('/items' , async(req,res)=>{
     const register= new Login(req.body);
-    const salt = await bcrypt.genSalt(5);
-    register.subject = await bcrypt.hash(register.subject , salt);
+    
     console.log(register);
     const insertR =  register.save();
     res.send(insertR);
+        
+   
+    
 });   
  app.get('/items',(req,res,next)=>{
      Login.find({})

@@ -19,6 +19,9 @@ const loginSchema =  new mongoose.Schema({
         maxlength:500
         
         
+    },
+    images:{
+        type:String
     }
 });
 
