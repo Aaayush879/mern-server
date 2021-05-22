@@ -1,24 +1,11 @@
 const express = require('express');
 const mongoose= require('mongoose');
-const bodyparser = require('body-parser')
-const bcrypt = require('bcrypt');
+const bodyparser = require('body-parser');
 const app = express();
-const multer = require('multer');
 require('dotenv').config();
-
-const storage = multer.diskStorage({
-    destination:(req , file , callback) => {
-        callback(null ,"./clientt/public/upload");
-    },
-    filename: (req,file,callback) =>{
-        callback(null , file.originalname);
-    }
-})
-const upload = multer({storage: storage});
 const port = process.env.PORT||2000;
 const Login = require('./model/Login');
 const cors = require('cors');
-
 const URL='mongodb+srv://ayushh:ayush@cluster0.5a5hg.mongodb.net/Cluster0?retryWrites=true&w=majority';
 app.use(bodyparser.json());
 app.use(express.json());
