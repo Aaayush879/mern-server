@@ -3,7 +3,7 @@ const mongoose= require('mongoose');
 const bodyparser = require('body-parser');
 const app = express();
 require('dotenv').config();
-const port = process.env.PORT||2000;
+const port = process.env.PORT;
 const Login = require('./model/Login');
 const cors = require('cors');
 const URL='mongodb+srv://ayushh:ayush@cluster0.5a5hg.mongodb.net/Cluster0?retryWrites=true&w=majority';
